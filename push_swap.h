@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/20 18:07:44 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 17:47:16 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "libft/libft.h"
+
+# define INT_MAX 2147483647
+# define INT_MIN -2147483648
 
 typedef struct t_list
 {
@@ -29,18 +32,21 @@ typedef struct t_list
 }					t_node;
 
 //push_swap
-void	rearrange_a(t_node **stack, int point);
-void	adjust(int cheapest_pos, t_node **a, t_node **b);
 void	push_swap(t_node **a);
+
+//cost 
+void	find_cost(t_node **a, t_node **b);
+int		find_cheapest(t_node **b);
+
+//create stack
+void	create_stack(char **storage, t_node **a);
 
 // utils
 t_node	*lstlast(t_node *lst);
 int		is_sorted(t_node *stack);
-void	message(int nb);
-void	create_linked_list(char **storage, t_node **a);
+void	handle_error(int nb);
 void	free_array(char ***str);
 void	free_linked_list(t_node **stack);
-
 
 //validate_args
 int		check_dup(char *str);
@@ -52,6 +58,8 @@ void	push(t_node **stack_1, t_node **stack_2, char *str);
 void	rotate(t_node **stack, char *str, int cost);
 void	reverse_rotate(t_node **stack, char *str, int cost);
 void	push_a(t_node **stack_1, t_node **stack_2, char *str);
+void	rotate_both(t_node **a, t_node **b, int cost_a, int cost_b);
+void	reverse_rotate_both(t_node **a, t_node **b, int cost_a, int cost_b);
 
 // put sorting index
 int		find_len(t_node *stack);
@@ -64,19 +72,28 @@ int		find_midpoint(t_node *stack);
 int		count_forward_moves(t_node *stack, int point);
 int		count_backward_moves(t_node *stack, int point);
 
-// find_min_max
+// find_target
+int		get_target_index(t_node **a, t_node **b);
 void	find_min_and_max(int *a_min, int *a_max, t_node *temp);
 void	check_min_and_max_diff(int *min_pos_diff, int *max_diff,
 			t_node **a, t_node **b);
+
 //sort three
 void	sort_three(t_node **stack);
 
 //send_to_b
-void	send_to_b_if_less_200(t_node **a, t_node **b);
-void	send_to_b_if_more_200(t_node **a, t_node **b);
+void	send_to_b_by_mid_point(t_node **a, t_node **b);
+void	send_to_b(t_node **a, t_node **b, int *total_nodes_to_go);
 int		find_midpt(t_node *stack);
-void	send_chunk(t_node **stack1, t_node **stack2,
-			int chunk, int *total_nodes_to_go);
-void	send_rest(t_node **stack1, t_node **stack2, int num);
+void	push_to_b(t_node **a, t_node **b, int *i, int *total_nodes_to_go);
+
+//rearrange 
+void	rearrange_a(t_node **stack, int point);
+
+//position
+void	assign_position(t_node **a, t_node **b);
+
+//adjust
+void	adjust(int cheapest_pos, t_node **a, t_node **b);
 
 #endif

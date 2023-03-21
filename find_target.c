@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_min_max.c                                     :+:      :+:    :+:   */
+/*   find_target.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 16:46:47 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/14 16:47:07 by Degef            ###   ########.fr       */
+/*   Created: 2023/03/21 17:07:57 by Degef             #+#    #+#             */
+/*   Updated: 2023/03/21 17:07:58 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,21 @@ void	check_min_and_max_diff(int *min_pos_diff, int *max_diff,
 			*min_pos_diff = next_diff;
 		temp_a = temp_a->next;
 	}
+}
+
+int	get_target_index(t_node **a, t_node **b)
+{
+	int		min_pos_diff;
+	int		max_diff;
+	int		target;
+	int		a_min;
+	int		a_max;
+
+	check_min_and_max_diff(&min_pos_diff, &max_diff, a, b);
+	find_min_and_max(&a_min, &a_max, *a);
+	if (max_diff > 0)
+		target = min_pos_diff + (*b)->sort_index;
+	else if (max_diff < 0)
+		target = a_min;
+	return (target);
 }

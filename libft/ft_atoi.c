@@ -12,11 +12,11 @@
 
 #include <stdlib.h>
 
-int	ft_atoi(const char *nptr)
+long	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int		i;
+	long	sign;
+	long	result;
 
 	i = 0;
 	sign = 1;
@@ -41,7 +41,7 @@ int	ft_atoi(const char *nptr)
 
 // int main()
 // {
-// 	char *str ="-2147483650";
+// 	char *str ="-2147483649";
+// 	printf("%ld\n", ft_atoi(str));
 // 	printf("%d", atoi(str));
-// 	printf("\n%d", ft_atoi(str));
 // }

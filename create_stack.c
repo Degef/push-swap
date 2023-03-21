@@ -1,49 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   create_stack.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 19:35:17 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/18 15:30:54 by Degef            ###   ########.fr       */
+/*   Created: 2023/03/21 17:11:31 by Degef             #+#    #+#             */
+/*   Updated: 2023/03/21 17:49:11 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-void	free_linked_list(t_node **stack)
+static int	check_dup2(t_node **a, long num)
 {
 	t_node	*temp;
-	t_node	*temp2;
 
-	temp = (*stack);
+	temp = *a;
 	while (temp)
 	{
-		temp2 = temp;
+		if (temp->data == (int)num)
+			return (1);
 		temp = temp->next;
-		temp2->next = NULL;
-		free(temp2);
 	}
+	return (0);
 }
 
-void	free_array(char ***str)
-{
-	int	i;
-
-	i = 0;
-	while ((*str)[i])
-		i++;
-	while (i >= 0)
-		free((*str)[i--]);
-	free(*str);
-}
-
-void	create_linked_list(char **storage, t_node **a)
+void	create_stack(char **storage, t_node **a)
 {
 	t_node	*nod;
-	int		num;
+	long	num;
 	char	**str;
 	int		i;
 
@@ -53,6 +39,8 @@ void	create_linked_list(char **storage, t_node **a)
 	while (str[i])
 	{
 		num = ft_atoi(str[i]);
+		if (num > INT_MAX || num < INT_MIN || check_dup2(a, num))
+			handle_error(0);
 		nod = malloc(sizeof(t_node));
 		nod->data = num;
 		nod->next = NULL;
@@ -64,36 +52,4 @@ void	create_linked_list(char **storage, t_node **a)
 		i++;
 	}
 	free_array(&str);
-	// free(str);
-}
-
-t_node	*lstlast(t_node *lst)
-{
-	if (!lst)
-		return (0);
-	while (lst->next)
-	{
-		lst = lst->next;
-	}
-	return (lst);
-}
-
-int	is_sorted(t_node *stack)
-{
-	while (stack->next)
-	{
-		if (stack->data > stack->next->data)
-			return (0);
-		stack = stack->next;
-	}
-	return (1);
-}
-
-void	message(int nb)
-{
-	(void)nb;
-	write(2, "Error\n", 6);
-	// else if (nb)
-	// 	write(1, "OK\n", 3);
-	exit(1);
 }

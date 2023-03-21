@@ -1,5 +1,3 @@
 {
-	"files.associations": {
-		"sstream": "c"
-	}
+	"C_Cpp.errorSquiggles": "disabled"
 }
