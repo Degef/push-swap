@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:11:31 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/24 14:30:39 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/24 17:37:14 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	check_dup2(t_node **a, long num)
 	return (0);
 }
 
-static void	free_stuff(int num, t_node **a, char ***str)
+static void	free_stuff(long num, t_node **a, char ***str)
 {
 	if (num > INT_MAX || num < INT_MIN || check_dup2(a, num))
 	{
