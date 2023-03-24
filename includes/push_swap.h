@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:56:10 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 17:47:16 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:54:23 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
 # define INT_MAX 2147483647
 # define INT_MIN -2147483648
@@ -49,8 +49,8 @@ void	free_array(char ***str);
 void	free_linked_list(t_node **stack);
 
 //validate_args
-int		check_dup(char *str);
-int		check_invalid_args(char *str);
+int		check_dup(char **str);
+int		check_invalid_args(char **str);
 
 // operations
 void	swap(t_node *stack, char *str);
@@ -58,6 +58,8 @@ void	push(t_node **stack_1, t_node **stack_2, char *str);
 void	rotate(t_node **stack, char *str, int cost);
 void	reverse_rotate(t_node **stack, char *str, int cost);
 void	push_a(t_node **stack_1, t_node **stack_2, char *str);
+
+// do both
 void	rotate_both(t_node **a, t_node **b, int cost_a, int cost_b);
 void	reverse_rotate_both(t_node **a, t_node **b, int cost_a, int cost_b);
 
@@ -95,5 +97,9 @@ void	assign_position(t_node **a, t_node **b);
 
 //adjust
 void	adjust(int cheapest_pos, t_node **a, t_node **b);
+
+//checker
+void	checker(t_node **a, t_node **b);
+void	check_instructions(t_node **a, t_node **b, char *instructions);
 
 #endif

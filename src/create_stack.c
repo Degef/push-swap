@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:11:31 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 17:49:11 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:30:39 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 static int	check_dup2(t_node **a, long num)
 {
@@ -26,6 +26,16 @@ static int	check_dup2(t_node **a, long num)
 	return (0);
 }
 
+static void	free_stuff(int num, t_node **a, char ***str)
+{
+	if (num > INT_MAX || num < INT_MIN || check_dup2(a, num))
+	{
+		free_linked_list(a);
+		free_array(str);
+		handle_error(0);
+	}
+}
+
 void	create_stack(char **storage, t_node **a)
 {
 	t_node	*nod;
@@ -39,8 +49,7 @@ void	create_stack(char **storage, t_node **a)
 	while (str[i])
 	{
 		num = ft_atoi(str[i]);
-		if (num > INT_MAX || num < INT_MIN || check_dup2(a, num))
-			handle_error(0);
+		free_stuff(num, a, &str);
 		nod = malloc(sizeof(t_node));
 		nod->data = num;
 		nod->next = NULL;

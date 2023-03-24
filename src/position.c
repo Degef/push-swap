@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_moves.c                                      :+:      :+:    :+:   */
+/*   position.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 16:26:11 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/14 16:26:57 by Degef            ###   ########.fr       */
+/*   Created: 2023/03/21 17:02:45 by Degef             #+#    #+#             */
+/*   Updated: 2023/03/21 19:42:06 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/push_swap.h"
 
-#include "push_swap.h"
-
-int	count_forward_moves(t_node *stack, int point)
+void	assign_position(t_node **a, t_node **b)
 {
-	int	i;
+	int		i;
+	t_node	*temp1;
+	t_node	*temp2;
 
 	i = 0;
-	while (stack->sort_index != point)
+	temp1 = *a;
+	temp2 = *b;
+	while (temp1)
 	{
-		i++;
-		stack = stack->next;
+		temp1->pos = i++;
+		temp1 = temp1->next;
 	}
-	return (i);
-}
-
-int	count_backward_moves(t_node *stack, int point)
-{
-	int	i;
-
 	i = 0;
-	while (stack->sort_index != point)
-		stack = stack->next;
-	stack = stack->next;
-	while (stack)
+	while (temp2)
 	{
-		i++;
-		stack = stack->next;
+		temp2->pos = i++;
+		temp2 = temp2->next;
 	}
-	return (i + 1);
 }

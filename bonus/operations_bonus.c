@@ -1,56 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   operations_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 14:41:47 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 14:37:00 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/22 20:58:32 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-void	reverse_rotate_both(t_node **a, t_node **b, int cost_a, int cost_b)
-{
-	while (cost_b < 0 && cost_a < 0)
-	{
-		reverse_rotate(a, " ", -1);
-		reverse_rotate(b, " ", -1);
-		write(1, "rrr\n", 4);
-		cost_a++;
-		cost_b++;
-	}
-	reverse_rotate(a, "rra", cost_a);
-	reverse_rotate(b, "rrb", cost_b);
-}
-
-void	rotate_both(t_node **a, t_node **b, int cost_a, int cost_b)
-{
-	while (cost_b > 0 && cost_a > 0)
-	{
-		rotate(a, " ", 1);
-		rotate(b, " ", 1);
-		write(1, "rr\n", 3);
-		cost_a--;
-		cost_b--;
-	}
-	rotate(a, "ra", cost_a);
-	rotate(b, "rb", cost_b);
-}
+#include "../includes/push_swap_bonus.h"
 
 void	swap(t_node *stack, char *str)
 {
 	int	temp;
-	int	temp2;
 
 	temp = stack->data;
 	stack->data = stack->next->data;
 	stack->next->data = temp;
-	temp2 = stack->sort_index;
-	stack->sort_index = stack->next->sort_index;
-	stack->next->sort_index = temp2;
 	if (ft_strncmp(str, "sa", 2) == 0)
 		write(1, "sa\n", 3);
 	else if (ft_strncmp(str, "sb", 2) == 0)
@@ -59,7 +27,6 @@ void	swap(t_node *stack, char *str)
 
 void	push(t_node **stack_1, t_node **stack_2, char *str)
 {
-	t_node	*new_node;
 	t_node	*temp;
 
 	if (!stack_1 || !stack_2 || !(*stack_2))

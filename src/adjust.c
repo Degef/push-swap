@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:05:16 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 17:05:17 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 19:41:28 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	adjust(int cheapest_pos, t_node **a, t_node **b)
 {

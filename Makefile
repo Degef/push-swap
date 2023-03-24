@@ -1,38 +1,55 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/11 20:05:04 by Degef             #+#    #+#              #
-#    Updated: 2023/03/21 17:13:45 by Degef            ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
+CC		= gcc
+CFLAGS	= -Wall -Werror -Wextra
 NAME	= push_swap
+C_NAME = checker
 
-M_SRCS	= push_swap.c utils.c operations.c put_sorting_index.c validate_args.c count_moves.c \
-			find_target.c sort_three.c send_to_b.c cost.c rearrange.c position.c adjust.c create_stack.c
+SRC_PATH = src/
+C_SRC_PATH = bonus/
+OBJ_PATH = obj/
 
-FLAGS	= -Wall -Wextra -Werror
-CC		= cc
-RM		= rm -f 
+SRC		= push_swap.c utils.c operations.c put_sorting_index.c validate_args.c \
+		 count_moves.c find_target.c sort_three.c send_to_b.c cost.c \
+		  rearrange.c position.c adjust.c create_stack.c do_both.c
 
-M_OBJS	= $(M_SRCS:.c=.o)
+C_SRC	= checker_bonus.c create_stack_bonus.c validate_args_bonus.c operations_bonus.c \
+			utils_bonus.c do_both_bonus.c
 
-all: $(NAME)
+# SRCS	= $(addprefix $(SRC_PATH), $(SRC))
+OBJ		= $(SRC:.c=.o)
+OBJS	= $(addprefix $(OBJ_PATH), $(OBJ))
+INCS	= -I ./includes/
 
-$(NAME): $(M_OBJS)
+# C_SRCS	= $(addprefix $(C_SRC_PATH), $(C_SRC))
+C_OBJ	= $(C_SRC:.c=.o)
+C_OBJS	= $(addprefix $(OBJ_PATH), $(C_OBJ))
+
+
+all: $(OBJ_PATH) $(NAME)
+
+bonus: $(OBJ_PATH) $(C_NAME)
+
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+
+$(OBJ_PATH)%.o: $(C_SRC_PATH)%.c
+	$(CC) $(CFLAGS) -c $< -o $@ $(INCS)
+
+$(OBJ_PATH):
+	mkdir $(OBJ_PATH)
+
+$(NAME): $(OBJS)
 	cd ./libft && make
-	$(CC) $(FLAGS) $(M_OBJS) ./libft/libft.a -o $(NAME)
-	
-clean: 
-	cd ./libft && make clean
-	$(RM) $(M_OBJS) 
+	$(CC) $(CFLAGS) $(OBJS) ./libft/libft.a -o $(NAME)
+
+$(C_NAME): $(C_OBJS)
+	cd ./libft && make
+	$(CC) $(CFLAGS) $(C_OBJS) ./libft/libft.a -o $(C_NAME)
+
+clean:
+	cd ./libft && make fclean
+	rm -rf $(OBJ_PATH)
 
 fclean: clean
-	cd ./libft && make fclean
-	$(RM) $(NAME) 
+	rm -f $(NAME) $(C_NAME)
 
 re: fclean all

@@ -6,22 +6,20 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:45:41 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 16:45:58 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/23 18:10:49 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	find_cost(t_node **a, t_node **b)
 {
-	int		size_a;
 	int		size_b;
 	t_node	*temp_b;
 	int		back_moves;
 	int		target_index;
 
 	temp_b = *b;
-	size_a = find_len(*a);
 	size_b = find_len(*b);
 	while (temp_b)
 	{
@@ -46,7 +44,7 @@ int	find_cheapest(t_node **b)
 	int		cheapest_pos;
 
 	temp = *b;
-	cheapest = INT32_MAX;
+	cheapest = INT_MAX;
 	while (temp)
 	{
 		cost_a = temp->cost_a;

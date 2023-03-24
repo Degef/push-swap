@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 19:17:48 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/17 20:36:00 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 19:42:19 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	find_len(t_node *stack)
 {

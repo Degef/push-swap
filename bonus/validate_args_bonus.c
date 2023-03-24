@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_args.c                                    :+:      :+:    :+:   */
+/*   validate_args_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 22:29:20 by mkiflema          #+#    #+#             */
-/*   Updated: 2023/03/17 16:25:26 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/24 14:23:12 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-int	check_dup(char *str)
+static void	free_storage(char ***storage, char **str)
+{
+	free_array(storage);
+	free(*str);
+	handle_error(0);
+}
+
+int	check_dup(char **str)
 {
 	char	**storage;
 	int		i;
@@ -21,7 +28,7 @@ int	check_dup(char *str)
 
 	i = 0;
 	j = 0;
-	storage = ft_split(str, ' ');
+	storage = ft_split(*str, ' ');
 	while (storage[i])
 	{
 		j = i + 1;
@@ -31,7 +38,7 @@ int	check_dup(char *str)
 			if (ft_strlen(storage[j]) > ft_strlen(storage[i]))
 				len = ft_strlen(storage[j]);
 			if (ft_strncmp(storage[i], storage[j], len) == 0)
-				return (0);
+				free_storage(&storage, str);
 			j++;
 		}
 		i++;
@@ -49,9 +56,12 @@ static int	is_valid(char c)
 		return (0);
 }
 
-static int	check_if_num(char *str)
+static int	check_if_not_num(char *str)
 {
-	if (!ft_strncmp(str, "0", 1))
+	int	i;
+
+	i = ft_strlen(str);
+	if (!ft_strncmp(str, "0", i))
 		return (0);
 	else
 	{
@@ -61,25 +71,28 @@ static int	check_if_num(char *str)
 	}
 }
 
-int	check_invalid_args(char *str)
+int	check_invalid_args(char **str)
 {
 	int		i;
 	char	**storage;
 
 	i = 0;
-	while (str[i])
+	while ((*str)[i])
 	{
-		if (is_valid(str[i]))
+		if (is_valid((*str)[i]))
 			i++;
 		else
+		{
+			free(*str);
 			return (0);
+		}
 	}
 	i = 0;
-	storage = ft_split(str, ' ');
+	storage = ft_split(*str, ' ');
 	while (storage[i])
 	{
-		if (check_if_num(storage[i]))
-			return (0);
+		if (check_if_not_num(storage[i]))
+			free_storage(&storage, str);
 		i++;
 	}
 	free_array(&storage);

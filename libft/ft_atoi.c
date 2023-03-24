@@ -32,7 +32,7 @@ long	ft_atoi(const char *nptr)
 	}	
 	while (nptr[i] != '\0' && nptr[i] >= '0' && nptr[i] <= '9')
 		result = (result * 10) + (nptr[i++] - '0');
-	while (nptr[i] != '\0' && !(nptr[i] >= '0' && nptr[i] <= '9'))
+	if (nptr[i] != '\0' && !(nptr[i] >= '0' && nptr[i] <= '9'))
 		return (0);
 	return (sign * result);
 }

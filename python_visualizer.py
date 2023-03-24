@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+# /usr/bin/python3 python_visualizer.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`
 
 from tkinter import *
 import sys
@@ -41,7 +42,7 @@ class PsGui:
         self.first_pile = self.pile_a[:]
         self.pile_b = []
         self.cmds = subprocess.check_output([PUSHS_PATH] + sys.argv[1:], stderr=subprocess.STDOUT,
-                                            timeout=12).splitlines()
+                                            timeout=120).splitlines()
         if len(self.pile_a) != 0:
             self.prespeed = 1 / len(self.pile_a)
         else:

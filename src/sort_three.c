@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 20:34:50 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/20 18:34:35 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 19:42:39 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	sort_three(t_node **stack)
 {

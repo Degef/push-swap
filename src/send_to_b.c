@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:44:11 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 14:07:04 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 19:42:31 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 int	find_midpt(t_node *stack)
 {

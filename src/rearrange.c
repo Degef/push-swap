@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   position.c                                         :+:      :+:    :+:   */
+/*   rearrange.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/21 17:02:45 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 17:02:51 by Degef            ###   ########.fr       */
+/*   Created: 2023/03/21 17:00:27 by Degef             #+#    #+#             */
+/*   Updated: 2023/03/21 19:42:25 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
-void	assign_position(t_node **a, t_node **b)
+void	rearrange_a(t_node **stack, int point)
 {
-	int		i;
-	t_node	*temp1;
-	t_node	*temp2;
+	int	ra_size;
+	int	rra_size;
 
-	i = 0;
-	temp1 = *a;
-	temp2 = *b;
-	while (temp1)
-	{
-		temp1->pos = i++;
-		temp1 = temp1->next;
-	}
-	i = 0;
-	while (temp2)
-	{
-		temp2->pos = i++;
-		temp2 = temp2->next;
-	}
+	ra_size = count_forward_moves(*stack, point);
+	rra_size = count_backward_moves(*stack, point);
+	if (ra_size == 0)
+		return ;
+	else if (ra_size > rra_size)
+		while (rra_size--)
+			reverse_rotate(stack, "rra", -1);
+	else
+		while (ra_size--)
+			rotate(stack, "ra", 1);
 }

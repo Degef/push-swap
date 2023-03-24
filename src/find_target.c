@@ -6,11 +6,11 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 17:07:57 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/21 17:07:58 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/21 21:06:26 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../includes/push_swap.h"
 
 void	find_min_and_max(int *a_min, int *a_max, t_node *temp)
 {
@@ -56,6 +56,7 @@ int	get_target_index(t_node **a, t_node **b)
 	int		a_min;
 	int		a_max;
 
+	target = 0;
 	check_min_and_max_diff(&min_pos_diff, &max_diff, a, b);
 	find_min_and_max(&a_min, &a_max, *a);
 	if (max_diff > 0)
