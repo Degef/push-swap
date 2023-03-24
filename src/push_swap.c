@@ -6,7 +6,7 @@
 /*   By: Degef <Degei411233@outlook.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 13:35:05 by Degef             #+#    #+#             */
-/*   Updated: 2023/03/24 14:42:42 by Degef            ###   ########.fr       */
+/*   Updated: 2023/03/24 15:22:38 by Degef            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ while stack_b is not empty the following tasks will be repeated sequencailly
 	1. find the current position of each element on stack a and stack b.
 	2. Find total cost of putting the element to its position back in stack_a. which the cost of bringing the element to top of b
 	   and the cost of find the position of the element in a and changing its position to be at the top of stack_a.
-	3. So, now we have the costs of all the elements in b. Now we select the element with the list cost. 
+	3. So, now we have the costs of all the elements in b. Now we select the element with the least cost. 
+	4. Finally we act the instructions of the element with list instructions
 */
 
 static char	*create_string_from_args(char **argv, char **storage)
